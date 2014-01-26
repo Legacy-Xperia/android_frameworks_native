@@ -256,6 +256,11 @@ protected:
             const sp<GraphicBuffer> graphicBuffer,
             EGLDisplay display, EGLSyncKHR eglFence);
 
+#ifdef STE_HARDWARE
+     // returns true if the slot still has the graphicBuffer in it.
+    virtual bool stillTracking(int slot, const sp<GraphicBuffer> graphicBuffer);
+#endif
+
     status_t releaseBufferLocked(int slot,
             const sp<GraphicBuffer> graphicBuffer, EGLSyncKHR eglFence) {
         return releaseBufferLocked(slot, graphicBuffer, mEglDisplay, eglFence);
@@ -453,7 +458,7 @@ private:
     // mGraphicBufferAlloc is the connection to SurfaceFlinger that is used to
     // allocate new GraphicBuffer objects.
     sp<IGraphicBufferAlloc> mGraphicBufferAlloc;
-    sp<GraphicBuffer> mBlitSlots[NUM_BLIT_BUFFER_SLOTS];
+    sp<GraphicBuffer> mBlitSlots[BufferQueue::NUM_BLIT_BUFFER_SLOTS];
     int mNextBlitSlot;
 #endif
 

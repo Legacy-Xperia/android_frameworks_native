@@ -44,9 +44,8 @@ class GraphicBuffer
 #else
     RefBase >,
 #endif
-      public Flattenable<GraphicBuffer>
+      public Flattenable
 {
-    friend class Flattenable<GraphicBuffer>;
 public:
 
     enum {
